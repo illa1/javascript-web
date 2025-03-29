@@ -11,9 +11,9 @@ const products = [
 ];
 
 const users = [
-    {id: 1, login: '1', password: '1', type: 'registered'},
-    {id: 2, login: '2', password: '2', type: 'VIP'},
-    {id: 3, login: '3', password: '3', type: 'VIP'}
+    {id: 1, login: '1', password: '1', type: 'registered', sale:4},
+    {id: 2, login: '2', password: '2', type: 'VIP', sale:20},
+    {id: 3, login: '3', password: '3', type: 'VIP', sale:20}
 ];
 
 let userType = 'puplick';
@@ -21,31 +21,57 @@ let useLogin;
 let usePassword;
 let user = {};
 
-function userVarification(login, password){
-    for(let i = 0; i < users.length; i++){
-        if (users[i].login == login && users[i]['password'] == password){
-            return {
-                login: users[i].login,
-                type: users[i].type
-            }
+function userVerification(login, password) {
+    for (let i = 0;  i < users.length; i++){
+        if (users[i].login === login && users[i]['password'] === password ){
+            return users[i]
         }
     }
+    
     return {}
 };
+
 
 if (confirm("Ви зареєстрований користувач?")) {
     useLogin = prompt('Введіть логін')
     usePassword = prompt('Введіть пароль')
-
-    user = userVarification(useLogin, usePassword)
-    if (user.hasOwnProperty('login')) {
-        userType = user.type
-    }
+    user = userVerification(useLogin, usePassword)
 };
 
-console.log(userType)
+console.log(user)
 
-let content = "<div><header><h1>Funka</h1></header>"
+function PDiv(img, name, price){
+    return "<div><img src = 'images/"
+                +img+"'><p>"
+                +name+"</p> <p>"
+                +Math.round(price)+"</p></div>";
+}
 
-content += '</div>'
+function addProduct(product) {
+    if (user.hasOwnProperty('login')) {
+        if (user.type === 'VIP'){
+            return PDiv(product.img, product.name, ((1 -user.sale/100) * product.price))
+            
+        }else if (product.type !== 'VIP'){
+            return PDiv(product.img, product.name, ((1 -user.sale/100) * product.price))
+        }
+    } else {
+        if (product.type !== 'VIP'){
+            return PDiv(product.img, product.name, product.price)
+        }
+    }
+
+    return ''
+};
+
+console.log(userType);
+
+let content = "<header><h1>Funka</h1></header><main>"
+let div = ''
+
+for(let i = 0; i < products.length; i++) {
+    div += addProduct(products[i])
+};
+
+content += div + "</main>";
 document.body.innerHTML = content;

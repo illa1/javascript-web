@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    height: 850px;
+    background-image: url(images/back.jpg);
+    background-repeat:no-repeat ;
+    background-size: cover;
+}
+h1{
+    font-size: 70px;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 0 0 2xp 2xp black;
+}
+main{
+    display: flex;
+    flex-wrap: wrap;
+}
+main > div{
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(0,0,0, 0.2);
+}
+main div img{
+    width: 100px;
+}
