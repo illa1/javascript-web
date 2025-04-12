@@ -43,6 +43,8 @@ let initImg = 'pokeball.jpg';
 let selectImg = 'pokecoin.jpg'
 let sectionBoard = document.getElementById('board');
 let cardsId = []
+let countResult = 0
+let spanResult = document.getElementById('result')
 
 function flipImg(e){
     let id = this.getAttribute('id')
@@ -51,7 +53,7 @@ function flipImg(e){
         this.setAttribute('src',images + boardItems[id].img)
         
         if(cardsId.length<3) cardsId.push(id)
-            
+
         console.log('ids=', cardsId)
 
         if(cardsId.length === 2)
@@ -60,6 +62,7 @@ function flipImg(e){
 };
 
 function checkCards(){
+    countResult++
     let item1 = document.getElementById(cardsId[0])
     let item2 = document.getElementById(cardsId[1])
 
@@ -73,6 +76,8 @@ function checkCards(){
         item2.setAttribute('src', images+initImg)
     }
     cardsId = []
+    spanResult.innerHTML = countResult
+
 };
 
 function createBoard(number = 12){
