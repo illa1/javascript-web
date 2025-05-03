@@ -116,11 +116,13 @@ function moveBombs(bombsList){
 
     if(bombsList.length === bombRemoved.length){
         alert('Ви виграли')
+        document.getElementById('main-el').classList.add('gamewin')
         clearInterval(gameLoopId)
     }
 
     if(bombsList[bombsList.length-1] > 210){
         alert('Ви програли')
+        document.getElementById('main-el').classList.add('gameover')
         clearInterval(gameLoopId)
     }
 

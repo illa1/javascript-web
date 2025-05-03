@@ -17,3 +17,9 @@
 .shoot{
     background-image: url('img/shoot.png');
 }
+.gamewin{
+    background-color: aqua;
+}
+.gameover{
+    background-color: brown;
+}
