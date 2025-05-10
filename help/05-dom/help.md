@@ -113,27 +113,7 @@ const paragraph = document.querySelector('p');
 paragraph.remove(); // Видаляємо елемент зі сторінки
 ```
 
----
-
-### **Обробка подій у DOM**
-
-#### **Що таке подія?**
-Події в DOM — це дії, що відбуваються на сторінці (наприклад, натискання кнопки, введення тексту, завантаження сторінки).
-
-#### **Додавання обробника подій**
-1. **Через атрибут HTML:**
-```html
-<button onclick="alert('Кнопка натиснута!')">Клік</button>
-```
-
-2. **Через метод `addEventListener`:**
-```javascript
-const button = document.querySelector('button');
-button.addEventListener('click', () => {
-  alert('Кнопка натиснута!');
-});
-```
-
+--- 
 
 ### **Перебір DOM-елементів**
 
