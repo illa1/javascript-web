@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+header{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: rgba(21, 90, 36, 0.8);
+    z-index: 2;
+}
+header ul{
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+header ul li{
+    padding: 5px;
+    background-color: black;
+    color: white;
+    margin: 0 10px;
+}
+header nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+main{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    margin-top: 60px;
+}
+#Matrix-bg{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+main > div{
+    padding-top: 40px;
+    font-size: 30px;
+    color: white;
+}
+body{
+    background-color: black;
+}
+.slider{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+#slider{
+    justify-content: center;
+    align-items: center;
+}
