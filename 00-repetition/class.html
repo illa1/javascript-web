@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+</head>
+<body>
+    <h1>JavaScript Classes</h1>
+
+    <script>
+        // Define a class
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            greet() {
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+            }
+        }
+
+        // Create an instance of the class
+        const person1 = new Person("Alice", 30);
+        person1.greet(); // Output: Hello, my name is Alice and I am 30 years old.
+
+        // Another instance
+        const person2 = new Person("Bob", 25);
+        person2.greet(); // Output: Hello, my name is Bob and I am 25 years old.
+    </script>
+</body>
+</html>
