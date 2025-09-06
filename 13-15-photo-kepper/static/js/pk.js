@@ -45,6 +45,8 @@ class PhotoGallery{
         this.picturesDB = this.generatePicturesDB(25)
         console.log(this.picturesDB)
         this.pictureContainer = document.querySelector('.picturesContainer')
+        this.openedPictureContainer = document.querySelector('.openedPictureContainer') 
+        this.closeButton = document.querySelector('.closeButton')
     }
     randomElement(array){
         return array[Math.floor(Math.random() * array.length)]
@@ -88,6 +90,32 @@ class PhotoGallery{
 
         })
         // console.log(pictureExample)
+    }
+    showChackedPicture(){
+        this.openedPictureContainer.querySelector('.openedPictureImg').src = picture.src
+        this.openedPictureContainer.querySelector('.openedPictureImg').style.filter = picture.effect
+        this.openedPictureContainer.querySelector('.openedPictureDescription').innerText = picture.description
+        this.openedPictureContainer.querySelector('.openedPictureStars').innerText = picture.likes
+        this.openedPictureContainer.querySelector('.openedPictureCommentsNumber').innerText = picture.commentsNumber
+    }   
+    
+
+    initEventListeners(){
+        this.pictureContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('pictureImg')){
+
+                const src = e.target.src
+                const picture = this.picturesDB.find( (pic) => pic.src === src)
+                if (picture){
+                    this.showChackedPicture(picture)
+                }
+            }
+        })
+
+        this.closeButton.addEventListener('click', (e) => {
+            this.openedPictureContainer.classList.add('hidden')
+            this.commntsContainer.innerText = ''
+        })
     }
 }
 
