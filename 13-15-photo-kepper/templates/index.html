@@ -29,15 +29,58 @@
 				<form>
 					<div>
 						<input type="file" name="file" id="inputUploadFile" class="hidden">
-						<label for="inputUploadFile"><img src="../static/img/camera.png" class="camaraButton"></label>
+						<label for="inputUploadFile">
+							<img src="../static/img/camera.png" class="camaraButton">
+						</label>
 					</div>
 					<div class="uploadImageOverlay hidden">
 						<div class="uploadImageSettingsContainer">
 							<div>
 								<img src="" class="uploadImage">
 							</div>
+							
+							<div class="uploadEffectLevel">
+								<input type="range" class="hidden" min="0" max="300" value="100" step="1" id="effectLevel">
+								<label for="effectLevel">
+									<div class="effectLevelLine" id="effectLevelLine">
+										<div class="effectLevelPin"></div>
+										<div class="effectLevelProgresLine"></div>
+									</div>
+								</label>
+							</div>
 
-							<fieldset class="uploadEffectFieldset"></fieldset>
+							<fieldset class="uploadEffectFieldset">
+								<input type="radio" name="effect" id="uploadEffectNone" value="none" class="hidden" checked>
+								<label for="uploadEffectNone" class="uploadEffectLabel" title="Без ефектів">
+									<div class="uploadEffectPreview"></div>
+								</label>
+								<!-- sepia -->
+								<input type="radio" name="effect" id="uploadEffectSepia" value="sepia" class="hidden">
+								<label for="uploadEffectSepia" class="uploadEffectLabel" title="Сепія">
+									<div class="uploadEffectPreview sepia"></div>
+								</label>
+								<!-- grase -->
+								<input type="radio" name="effect" id="uploadEffectGrayscale" value="grayscale" class="hidden">
+								<label for="uploadEffectGrayscale" class="uploadEffectLabel" title="Чорно-білий">
+									<div class="uploadEffectPreview grayscale"></div>
+								</label>
+								<!-- invert -->
+								<input type="radio" name="effect" id="uploadEffectInvert" value="invert" class="hidden">
+								<label for="uploadEffectInvert" class="uploadEffectLabel" title="Інверсія">
+									<div class="uploadEffectPreview invert"></div>
+								</label>
+								<!-- saturate -->
+								<input type="radio" name="effect" id="uploadEffectSaturate" value="saturate" class="hidden">
+								<label for="uploadEffectSaturate" class="uploadEffectLabel" title="Насиченість">
+									<div class="uploadEffectPreview saturate"></div>
+								</label>
+								<!-- contrast -->
+								<input type="radio" name="effect" id="uploadEffectContrast" value="contrast" class="hidden">
+								<label for="uploadEffectContrast" class="uploadEffectLabel" title="Контрастність">
+									<div class="uploadEffectPreview contrast"></div>
+								</label>
+								
+							</fieldset>
 
 							<div>
 								<button class="uploadFormButton active" type="reset" id="uploadCancel">ВІДМІНА</button>

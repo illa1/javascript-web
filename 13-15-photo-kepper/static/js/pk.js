@@ -136,8 +136,46 @@ class PhotoGallery{
     }
 }
 
+class imageUploader{
+    constructor(){
+        this.inputUploadFile = document.getElementById('inputUploadFile')
+        this.uploadImageOverlay = document.querySelector('.uploadImageOverlay')
+        this.uploadImage = this.uploadImageOverlay.querySelector('.uploadImage')
+        this.uploadEffectFieldset = this.uploadImageOverlay.querySelector('.uploadEffectFieldset')
+        this.buttonCloseUpload = document.getElementById('uploadCancel')
+
+        this.currectEffect = 'none'
+        this.initEventListeners()
+    }
+    initEventListeners(){
+        this.inputUploadFile.addEventListener('change', (e) => {
+            const file = e.target.files[0]
+            if (file && file.type.includes('image')){
+                const reader = new FileReader()
+                reader.readAsDataURL(file)
+                reader.onload = () => {
+                    this.uploadImage.src = reader.result
+                    const labelsEffectSettings = this.uploadEffectFieldset.querySelectorAll('.uploadEffectPreview')
+
+                    labelsEffectSettings.forEach( (label) => {
+                        label.style.backgroundImage = `url(${reader.result})`
+                    })
+                    this.uploadImageOverlay.classList.remove('hidden')
+                }
+            }
+        
+        })
+        this.buttonCloseUpload.addEventListener('click', (e) => {
+        this.uploadImageOverlay.classList.add('hidden')
+        
+        })
+    }
+}
+
 document.addEventListener('DOMContentLoaded', ()=>{
     new MainMenu('.menuTrigger', '.mainMenuContainer')
     const gallery = new PhotoGallery
     gallery.showPictures();
+
+    const uploader = new imageUploader()
 })
