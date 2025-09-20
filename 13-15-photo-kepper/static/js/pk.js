@@ -166,8 +166,11 @@ class imageUploader{
         
         })
         this.buttonCloseUpload.addEventListener('click', (e) => {
-        this.uploadImageOverlay.classList.add('hidden')
+            this.uploadImageOverlay.classList.add('hidden')
         
+        })
+        this.uploadEffectFieldset.addEventListener('change', (e) => {
+            // TODO: add effect
         })
     }
 }
