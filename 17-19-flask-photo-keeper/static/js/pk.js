@@ -146,6 +146,9 @@ class imageUploader{
 
         this.effectSlider = document.getElementById('effectLevel')
         this.currectEffect = 'none'
+
+        this.submitButton = document.getElementById('uploadSubmit')
+
         this.initEventListeners()
     }
     initEventListeners(){
@@ -163,6 +166,8 @@ class imageUploader{
                     })
                     this.uploadImageOverlay.classList.remove('hidden')
                 }
+            
+                this.submitButton.removeAttribute('disabled');
             }
             else{
                 alert('Ви обрали не зображення!')
@@ -203,6 +208,17 @@ class imageUploader{
         }
         else if (this.uploadImage){
             this.uploadImage.style.filter = 'none'
+        }
+    }
+    initValidation(){
+        const changeStatusSubmitButton = (active) => {
+            if (active){
+                this.submitButton.removeAttribute('disabled')
+                this.submitButton.classList.add('active')
+            } else{
+                this.submitButton.setAttribute('disabled', 'disabled')
+                this.submitButton.classList.remove('active')
+            }
         }
     }
 }
