@@ -1,0 +1,39 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+header{
+    background-color: gray;
+    color: white;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+}
+header h1{
+    padding: 10px 20px;
+    font-size: 50px;
+}
+header ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding:3px 10px;
+    margin: 10px 20px;
+}
+header ul li{
+    cursor: pointer;
+    font-size: 25px;
+    padding: 0 20px ;
+    /* background-color:rgb(129, 113, 113); */
+    border: solid 1px white;
+}
+header ul li a{
+    text-decoration: none;
+    color: white;
+}
+main{
+padding-top: 100px;
+
+}

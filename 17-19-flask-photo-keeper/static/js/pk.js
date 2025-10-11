@@ -166,7 +166,7 @@ class imageUploader{
                     })
                     this.uploadImageOverlay.classList.remove('hidden')
                 }
-            
+              
                 this.submitButton.removeAttribute('disabled');
             }
             else{
