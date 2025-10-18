@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+        {% block content %}
+        <section class="addItemFormSection">
+            <h2>Додати свою річ до музею</h2>
+            <form class="addItemForm" action="/add-item" method="post" enctype="multipart/form-data">
+                <div class="formGroup">
+                    <label for="itemImage">Зображення :</label>
+                    <input type="file" id="itemImage" name="itemImage" accept="image/*" required>
+                </div>
+                <div class="formGroup">
+                    <label for="itemName">Назва:</label>
+                    <input type="text" id="itemName" name="itemName" required>
+                </div>
+                <div class="formGroup">
+                    <label for="itemDescription">Опис:</label>
+                    <textarea id="itemDescription" name="itemDescription" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="submitButton">Додати річ</button>
+            </form>
+        </section>
+        {% endblock %}
