@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="register">
+    <h1>Реєстрація</h1>
+    <form method="post" action="/register">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username">
+        </div>
+        <div class="mb-3">
+            <label for="useremail" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="useremail" name="useremail" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="userpassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="userpassword" name="userpassword">
+        </div>
+        <!-- <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div> -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</section>
+{% endblock %}

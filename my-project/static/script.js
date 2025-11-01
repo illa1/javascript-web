@@ -3,6 +3,7 @@ class Gallery {
         //this.galleryTemplate = document.querySelector('.Template')
         this.galleryContainer = document.querySelector('.galleryContainer')
         this.photoCardTemplateDiv = document.querySelector('.photoCardTemplateDiv')
+        
     }
 
 }
