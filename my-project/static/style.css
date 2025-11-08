@@ -44,7 +44,7 @@ header ul li a{
 }
 /* index ---------------------------------------------------------------*/
 .banner {
-  background-image: url('../static/img/baner.png');
+  background-image: url('../static/img/banner.jpg');
   background-size: cover;
   background-position: center;
   height: 100%;

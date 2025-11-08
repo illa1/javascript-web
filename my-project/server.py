@@ -31,9 +31,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(100), nullable=False)
     usermail = db.Column(db.String(100), nullable=False)
-    password = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(200), nullable=False)
 
-   
     
 
 def db_create():
@@ -58,7 +57,7 @@ def register():
         usermail = request.form.get('useremail')
         password = request.form.get('userpassword')
         
-        hashed_password = generate_password_hash(password, method='sha256')
+        hashed_password = generate_password_hash(password)
 
         db.session.add(User(username=username, usermail=usermail, password=hashed_password))
         db.session.commit()
@@ -71,12 +70,12 @@ def login():
     if request.method == 'POST':
         usermail = request.form.get('useremail')
         password = request.form.get('userpassword')
-        #db.session.query(User).filter_by(usermail=usermail, password=password).first()
+        user = User.query.filter_by(usermail=usermail, password=password).first()
 
         user = User.query.filter_by(usermail=usermail).first()
        
-        
         if user and check_password_hash(user.password, password): 
+        # if user and user.password == password: 
             session[USER_SESION_KEY] = usermail
             return redirect(url_for("index") )
         else:
@@ -107,5 +106,5 @@ def add_item():
 
 
 if __name__ == '__main__':
-    # db_create()   
+    db_create()   
     app.run(debug=True)

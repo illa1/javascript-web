@@ -16,10 +16,13 @@
         <h1>Музей речей</h1>
         <ul>
             <li><a href="/">Головна</a></li>
-            <li><a href="/register">Реєстрація</a></li>
-            <li><a href="/login">Вхід</a></li>
-            <li><a href="/add-item">Додати свою річ</a></li>
-            <li><a href="/logout">Вихід</a></li>
+            {% if session['user'] %}
+                <li><a href="/add-item">Додати свою річ</a></li>
+                <li><a href="/logout">Вихід</a></li>
+            {% else %}
+                <li><a href="/register">Реєстрація</a></li>
+                <li><a href="/login">Вхід</a></li>
+            {% endif %}
         </ul>
     </header>
     <main>
