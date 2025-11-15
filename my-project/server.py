@@ -1,14 +1,10 @@
-from flask import Flask, render_template, request, url_for, session, redirect
+from flask import Flask, render_template, request, url_for, session, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
-USER_SESION_KEY = 'user'
 
-UserUser = {
-    'usermail': 'illa@gmail.com',
-    'password': '123'
-}
+USER_SESION_KEY = 'user'
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
@@ -79,7 +75,8 @@ def login():
             session[USER_SESION_KEY] = usermail
             return redirect(url_for("index") )
         else:
-            return "Invalid credentials", 401
+            error = 'Invalid Credentials. Please try again.'
+            return render_template('login.html', error=error)
     return render_template('login.html')
 
 @app.route('/logout')
@@ -100,8 +97,16 @@ def add_item():
 
     return render_template('add-item.html')
     
-    
 
+@app.route('/gallery')
+def gallery():
+    photos = Photo.query.all()    
+    # return jsonify(photos), 200
+    return jsonify([{
+        'itemImage': 'static/img/' +  photo.itemImage, 
+        'itemName': photo.itemName, 
+        'itemDescription': photo.itemDescription
+        } for photo in photos]), 200 
 
 
 

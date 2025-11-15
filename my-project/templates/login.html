@@ -12,6 +12,11 @@
             <label for="userpassword" class="form-label">Password</label>
             <input type="password" class="form-control" id="userpassword" name="userpassword" required>
         </div>
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
         <!-- !TODO: -->
         <!-- <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
