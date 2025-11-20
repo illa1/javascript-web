@@ -1,12 +1,5 @@
 console.log('Script loaded');
 
-/*
-1. знайти блоки для вставки фото
-2. зробити запит на сервер за фото fetch/ajax
-3. отримати відповідь від сервера
-4. вставити фото в блоки 
-*/
-
 class Gallery {
     constructor() {
         this.photoTemplate = document.getElementById('photoCardTemplate');
@@ -26,7 +19,6 @@ class Gallery {
         .then(response => response.json())
         .then(data => {
             console.log('Photos received from server:', data);
-            //photos = data;
             this.showPhotos(data);
         })
         .catch(error => {
@@ -64,7 +56,7 @@ class Gallery {
             this.photoContainer.appendChild(photoCard);
         });
     } 
-    // Open the full photo modal using the template
+
     openFullPhoto(photo) {
         const tpl = document.getElementById('fullPhotoCardTemplate');
         if (!tpl) return console.warn('fullPhotoCardTemplate not found');
@@ -73,7 +65,6 @@ class Gallery {
         const card = fragment.querySelector('.fullPhotoCardContainer');
         if (!card) return;
 
-        // populate
         const img = card.querySelector('.fullPhotoCardImage');
         if (img) { img.src = photo.itemImage || ''; img.alt = photo.itemName || ''; }
         const title = card.querySelector('.fullPhotoCardName');
@@ -81,7 +72,6 @@ class Gallery {
         const desc = card.querySelector('.fullPhotoCardDescriptionText');
         if (desc) desc.textContent = photo.itemDescription || '';
 
-        // remove id to avoid duplicates
         card.removeAttribute('id');
 
         const overlay = document.createElement('div');

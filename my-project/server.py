@@ -40,10 +40,6 @@ def db_create():
 
 @app.route('/')
 def index():
-    # key = ''
-    # if 'user' in session:
-    #     key =  f"""Hello, {session['user']}! Welcome to the Item Museum."""
-    
     return render_template('index.html', user=session.get('user'))
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -73,7 +69,7 @@ def login():
         user = User.query.filter_by(usermail=usermail).first()
        
         if user and check_password_hash(user.password, password): 
-        # if user and user.password == password: 
+
             session[USER_SESION_KEY] = usermail
             return redirect(url_for("index") )
         else:
@@ -94,7 +90,6 @@ def add_item():
         name = request.form.get('itemName')
         description = request.form.get('itemDescription')
 
-        # Save file to static/img directory
         img_path = os.path.join(basedir, 'static', 'img', file.filename)
         file.save(img_path)
 
