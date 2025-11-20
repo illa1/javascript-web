@@ -10,8 +10,8 @@ console.log('Script loaded');
 class Gallery {
     constructor() {
         this.photoTemplate = document.getElementById('photoCardTemplate');
-        this.photos = this.getPhotos();        
-        this.photoContainer = document.getElementById('photosContainer');        
+        this.photoContainer = document.getElementById('photosContainer');
+        this.getPhotos();
     }
 
     getPhotos() {
@@ -44,27 +44,71 @@ class Gallery {
             return;
         }
 
-        photos.forEach(photo => {      
+        photos.forEach(photo => {
             const photoCard = this.photoTemplate.content.cloneNode(true);
-          
-            photoCard.querySelector('.photoCardImage').src = photo.itemImage;
-            photoCard.querySelector('.photoCardImage').alt = photo.itemName;
-            photoCard.querySelector('.photoCardName').textContent = photo.itemName;
-            photoCard.querySelector('.photoCardDescriptionText').textContent = photo.itemDescription;
-            
+
+            const img = photoCard.querySelector('.photoCardImage');
+            const nameEl = photoCard.querySelector('.photoCardName');
+            const descEl = photoCard.querySelector('.photoCardDescriptionText');
+
+            if (img) {
+                img.src = photo.itemImage;
+                img.alt = photo.itemName;
+                // open full photo on click
+                img.addEventListener('click', () => this.openFullPhoto(photo));
+                img.style.cursor = 'zoom-in';
+            }
+            if (nameEl) nameEl.textContent = photo.itemName;
+            if (descEl) descEl.textContent = photo.itemDescription;
+
             this.photoContainer.appendChild(photoCard);
-        });        
-    }    
+        });
+    } 
+    // Open the full photo modal using the template
+    openFullPhoto(photo) {
+        const tpl = document.getElementById('fullPhotoCardTemplate');
+        if (!tpl) return console.warn('fullPhotoCardTemplate not found');
+
+        const fragment = document.importNode(tpl.content, true);
+        const card = fragment.querySelector('.fullPhotoCardContainer');
+        if (!card) return;
+
+        // populate
+        const img = card.querySelector('.fullPhotoCardImage');
+        if (img) { img.src = photo.itemImage || ''; img.alt = photo.itemName || ''; }
+        const title = card.querySelector('.fullPhotoCardName');
+        if (title) title.textContent = photo.itemName || '';
+        const desc = card.querySelector('.fullPhotoCardDescriptionText');
+        if (desc) desc.textContent = photo.itemDescription || '';
+
+        // remove id to avoid duplicates
+        card.removeAttribute('id');
+
+        const overlay = document.createElement('div');
+        overlay.className = 'fullPhotoOverlay';
+        overlay.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:9999;padding:20px;box-sizing:border-box;';
+        overlay.appendChild(card);
+
+        function close() {
+            document.removeEventListener('keydown', onKey);
+            overlay.remove();
+        }
+        function onKey(e) { if (e.key === 'Escape') close(); }
+
+        const closeBtn = card.querySelector('#fullPhotoCardCloseBtn');
+        if (closeBtn) closeBtn.addEventListener('click', close);
+        overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+        document.addEventListener('keydown', onKey);
+
+        const existing = document.querySelector('.fullPhotoOverlay');
+        if (existing) existing.remove();
+
+        document.body.appendChild(overlay);
+    }
+
 }
-
-
-
-
-// 5. Викликати метод showPhotos після завантаження DOM
-
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM fully loaded and parsed');
-    //gallery.showPhotos();
     new Gallery();
 });

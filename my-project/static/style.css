@@ -171,3 +171,48 @@ main{
     gap: 10px;
 }
 
+/* Full photo overlay/modal */
+.fullPhotoOverlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+}
+.fullPhotoCardContainer{
+    height: 80%;
+    max-height: 90vh;
+    background: #fff;
+    color: #000;
+    border-radius: 6px;
+    overflow: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    max-width: fit-content;
+}
+.fullPhotoCardContainer .fullPhotoCardImageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    height: 80%;
+    overflow: hidden;
+}
+.fullPhotoCardContainer .fullPhotoCardImage{
+    height: 100%;
+    object-fit: contain;
+}
+#fullPhotoCardCloseBtn, .fullPhotoCardContainer #fullPhotoCardCloseBtn{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+}
+
