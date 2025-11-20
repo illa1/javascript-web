@@ -73,7 +73,7 @@ def login():
             session[USER_SESION_KEY] = usermail
             return redirect(url_for("index") )
         else:
-            error = 'Invalid Credentials. Please try again.'
+            error = 'Невірний логін або пароль'
             return render_template('login.html', error=error)
     return render_template('login.html')
 
@@ -109,7 +109,6 @@ def gallery():
         'itemName': photo.itemName, 
         'itemDescription': photo.itemDescription
         } for photo in photos]), 200 
-
 
 if __name__ == '__main__':
     db_create()   

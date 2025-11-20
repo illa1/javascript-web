@@ -156,6 +156,13 @@ main{
     justify-content: center;
     align-items: center;
 }
+.register form{
+    min-width: 300px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 /* login -------------------------------------------------- */
 .login{
     width: 100%;
@@ -165,6 +172,13 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.login form{
+    min-width: 300px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 /* add-item -------------------------------------------------*/
 .addItemFormSection{
@@ -195,7 +209,7 @@ main{
     gap: 10px;
 }
 
-/* Full photo overlay/modal */
+/* Full photo -------------------------------------------------------*/
 .fullPhotoOverlay {
     position: fixed;
     inset: 0;
@@ -207,18 +221,20 @@ main{
     background: rgba(0, 0, 0, 0.8);
 }
 
-/* make the card shrink-to-fit the image while keeping responsive limits */
+
 .fullPhotoCardContainer{
-    display: inline-block; /* shrink to content width */
+    display: inline-block;
     background: #fff;
     color: #000;
     border-radius: 6px;
-    overflow: auto; /* allow scrolling if content exceeds max-height */
+    overflow: auto;
     position: relative;
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     max-width: 70%;
     max-height: 90vh;
     box-sizing: border-box;
+    border: solid 7px white;
+    border-radius: 10px;
 }
 .fullPhotoCardContainer .fullPhotoCardImageContainer{
     display: flex;
@@ -230,10 +246,9 @@ main{
 }
 .fullPhotoCardContainer .fullPhotoCardImage{
     display: block;
-    width: auto; /* let intrinsic width determine container */
+    width: auto; 
     height: auto;
     max-width: calc(100vw - 80px);
-    /* leave room for title/description so image won't fill entire modal */
     max-height: calc(90vh - 140px);
     object-fit: contain;
 }
@@ -252,7 +267,7 @@ main{
     cursor: pointer;
 }
 
-/* Ensure title and description are visible and padded */
+
 .fullPhotoCardNameContainer{
     padding: 12px 16px 6px 16px;
     font-size: 1.25rem;
@@ -263,16 +278,5 @@ main{
     padding: 0 16px 16px 16px;
     color: #333;
     line-height: 1.4;
-}
-
-/* Ensure text wraps to the card/image width and long words break */
-.fullPhotoCardNameContainer,
-.fullPhotoCardDescriptionContainer{
-    box-sizing: border-box;
-    max-width: 100%;
-    white-space: normal;
-    overflow-wrap: break-word; /* modern */
-    word-wrap: break-word; /* legacy */
-    word-break: break-word; /* break long words if needed */
 }
 
