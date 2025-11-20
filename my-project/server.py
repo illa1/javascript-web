@@ -57,13 +57,15 @@ def register():
 
         db.session.add(User(username=username, usermail=usermail, password=hashed_password))
         db.session.commit()
-
-    return render_template('register.html')
+        return redirect(url_for('login'))
+    else:
+        return render_template('register.html')
 
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        username = request.form.get('username')
         usermail = request.form.get('useremail')
         password = request.form.get('userpassword')
         user = User.query.filter_by(usermail=usermail, password=password).first()
@@ -98,8 +100,9 @@ def add_item():
 
         db.session.add(Photo(itemImage=file.filename, itemName=name, itemDescription=description))
         db.session.commit()
-
-    return render_template('add-item.html')
+        return redirect(url_for('index'))
+    else:
+        return render_template('add-item.html')
     
 
 @app.route('/gallery')
@@ -111,7 +114,6 @@ def gallery():
         'itemName': photo.itemName, 
         'itemDescription': photo.itemDescription
         } for photo in photos]), 200 
-
 
 
 if __name__ == '__main__':

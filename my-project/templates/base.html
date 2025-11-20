@@ -23,6 +23,12 @@
                 <li><a href="/login">Вхід</a></li>
             {% endif %}
         </ul>
+        <div class="user">
+            {% if session['user'] %}
+                <p>Вітаємо, {{ session['user'] }}!</p>
+                <img src="../static/img/3682281.png" alt="">
+            {% endif %}
+        </div>
     </header>
     <main>
         {% block content %}
