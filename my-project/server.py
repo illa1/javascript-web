@@ -92,6 +92,10 @@ def add_item():
         name = request.form.get('itemName')
         description = request.form.get('itemDescription')
 
+        # Save file to static/img directory
+        img_path = os.path.join(basedir, 'static', 'img', file.filename)
+        file.save(img_path)
+
         db.session.add(Photo(itemImage=file.filename, itemName=name, itemDescription=description))
         db.session.commit()
 
